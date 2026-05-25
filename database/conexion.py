@@ -32,7 +32,7 @@ class DatabaseManager:
     def _conectar(self):
         """Abre conexion y crea esquema si no existe."""
         os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
-        self._conexion = sqlite3.connect(DB_PATH)
+        self._conexion = sqlite3.connect(DB_PATH, check_same_thread=False)
         self._conexion.row_factory = sqlite3.Row
         self._conexion.execute("PRAGMA journal_mode=WAL")
         self._conexion.execute("PRAGMA foreign_keys=ON")
