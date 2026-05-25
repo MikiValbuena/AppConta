@@ -1,0 +1,117 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "gestor": {
+      "description": "Orquestador principal. Analiza tareas, decide si necesita especialistas (Windows/Docker), delega al programador, y coordina el flujo de revisiones.",
+      "mode": "primary",
+      "color": "#FF6B35",
+      "permission": {
+        "read": "allow",
+        "edit": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "bash": {
+          "*": "ask",
+          "git status *": "allow",
+          "git diff *": "allow",
+          "git log *": "allow",
+          "dir *": "allow",
+          "ls *": "allow",
+          "type *": "allow"
+        },
+        "task": {
+          "*": "allow"
+        },
+        "webfetch": "allow",
+        "websearch": "allow",
+        "question": "allow"
+      }
+    },
+    "especialista-windows": {
+      "description": "Experto en Windows 10/11, WSL 2, PowerShell, y configuración del sistema para entornos Docker.",
+      "mode": "subagent",
+      "color": "#0078D4",
+      "permission": {
+        "read": "allow",
+        "edit": "deny",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "bash": {
+          "*": "ask",
+          "wsl *": "allow",
+          "powershell *": "allow",
+          "Get-*": "allow",
+          "systeminfo": "allow",
+          "winver": "allow"
+        },
+        "webfetch": "allow",
+        "websearch": "allow",
+        "question": "allow"
+      }
+    },
+    "especialista-docker": {
+      "description": "Experto en Docker, Docker Compose, Dockerfiles, y contenedorización de aplicaciones web.",
+      "mode": "subagent",
+      "color": "#2496ED",
+      "permission": {
+        "read": "allow",
+        "edit": "deny",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "bash": {
+          "*": "ask",
+          "docker *": "allow",
+          "docker-compose *": "allow",
+          "docker compose *": "allow"
+        },
+        "webfetch": "allow",
+        "websearch": "allow",
+        "question": "allow"
+      }
+    },
+    "programador": {
+      "description": "Implementa el código siguiendo las recomendaciones de los especialistas y el diseño del proyecto.",
+      "mode": "subagent",
+      "color": "#4CAF50",
+      "permission": {
+        "read": "allow",
+        "edit": "allow",
+        "write": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "bash": {
+          "*": "ask",
+          "mkdir *": "allow",
+          "New-Item *": "allow"
+        },
+        "task": {
+          "*": "allow"
+        },
+        "question": "allow"
+      }
+    },
+    "revisor": {
+      "description": "Revisor de código. Analiza el código implementado, detecta issues, bugs, y problemas de calidad. No modifica nada, solo reporta.",
+      "mode": "subagent",
+      "color": "#E53935",
+      "permission": {
+        "read": "allow",
+        "edit": "deny",
+        "write": "deny",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "bash": {
+          "dir *": "allow",
+          "ls *": "allow",
+          "type *": "allow",
+          "cat *": "allow"
+        }
+      }
+    }
+  }
+}
