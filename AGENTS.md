@@ -13,15 +13,35 @@
 ## Workflow obligatorio
 
 ```
-Usuario → @gestor → @especialistas (si aplica) → @programador → @revisor
-                                                      ↑              │
-                                                      │       ¿Issues?
-                                                      │       ├── Sí → vuelve a @programador
-                                                      │       └── No → Usuario valida
-                                                      │                  ↓
-                                                      │            ¿Aprueba?
-                                                      │            ├── Sí → git commit
-                                                      │            └── No → ajustes
+Usuario → @gestor
+             │
+             ▼
+       ¿Necesita especialistas?
+       ├── Sí → @especialista-windows / @especialista-docker → @gestor
+       └── No ────────────────────────────────────────────────┘
+             │
+             ▼
+       @programador (implementa)
+             │
+             ▼
+       @revisor (revisa)
+             │
+        ┌────┴────┐
+        ▼         ▼
+     ¿Issues?  ✅ Sin issues
+        │         │
+        │         ▼
+        │    Usuario valida
+        │         │
+        │    ┌────┴────┐
+        │    ▼         ▼
+        │  ¿Aprueba?  ❌ Rechaza
+        │    │         │
+        │    │         └──→ @programador (ajustes) → @revisor
+        │    ▼
+        │  ✅ Aprueba → git commit
+        │
+        └──→ @programador (corrige) → @revisor (revisa de nuevo)
 ```
 
 ### Reglas del workflow
@@ -30,8 +50,9 @@ Usuario → @gestor → @especialistas (si aplica) → @programador → @revisor
 2. **Especialistas** solo se consultan cuando la tarea lo requiere.
 3. **@programador** implementa siguiendo indicaciones. No decide arquitectura.
 4. **@revisor** revisa TODO el código antes de presentarlo al usuario.
-5. **Máximo 3 ciclos** de revisión-corrección.
+5. **Máximo 3 ciclos** de revisión-corrección entre @revisor y @programador.
 6. **Nunca hacer commit** sin aprobación explícita del usuario.
+7. **Si el usuario rechaza** los cambios, vuelve a @programador para ajustes, luego pasa otra vez por @revisor.
 
 ## Stack técnico
 - **Backend**: Pendiente de definir

@@ -50,17 +50,25 @@ Una vez que `@programador` termina, invoca a `@revisor` para que analice el cód
 SI `@revisor` encuentra **issues o problemas**:
 1. Toma los reportes de issues y pásalos a `@programador` para corregir
 2. Una vez corregido, vuelve a llamar a `@revisor` para verificar
-3. Repite hasta que `@revisor` dé el visto bueno (o 3 intentos máximos)
+3. Repite hasta que `@revisor` dé el visto bueno (máximo 3 ciclos)
 
 SI `@revisor` da **visto bueno**:
-1. Presenta los cambios al usuario para **validación final**
-2. Pregunta: "¿Apruebas estos cambios para hacer commit?"
+1. Pasa a Fase 5: Validación del usuario
 
-### Fase 5: Commit
-SOLO cuando el usuario apruebe explícitamente:
+### Fase 5: Validación del usuario y commit
+Presenta los cambios al usuario para **validación final**.
+Pregunta: "¿Apruebas estos cambios para hacer commit?"
+
+SI el usuario **APRUEBA**:
 1. Añade los archivos al staging
 2. Crea un commit descriptivo
 3. Muestra el resultado al usuario
+
+SI el usuario **NO aprueba** (rechaza):
+1. Pregunta qué ajustes se necesitan
+2. Pasa los ajustes a `@programador` para corregir
+3. Una vez corregido, vuelve a `@revisor` para verificar
+4. Luego presenta de nuevo al usuario
 
 ## Decisiones
 
@@ -70,7 +78,7 @@ SI se necesita configuración Docker → Invoca `@especialista-docker`
 SI toca escribir código → Delega en `@programador`
 SI toca revisar código → Delega en `@revisor`
 SI el revisor reporta errores → Vuelve al programador con el feedback
-SI el usuario rechaza → Pregunta qué ajustar y repite desde Fase 3
+SI el usuario rechaza → Pregunta qué ajustar y pasa a @programador para corregir, luego repite desde Fase 4
 SI el usuario aprueba → Haz commit con mensaje descriptivo
 
 ## Ejemplos
