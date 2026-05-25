@@ -1,6 +1,7 @@
 ---
 description: "Revisor de código. Analiza el código implementado, detecta issues, bugs, y problemas de calidad. No modifica nada, solo reporta."
 mode: subagent
+model: opencode/big-pickle
 color: "#E53935"
 permission:
   read: allow

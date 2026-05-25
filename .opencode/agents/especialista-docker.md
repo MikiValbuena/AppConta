@@ -1,6 +1,7 @@
 ---
 description: "Experto en Docker, Docker Compose, Dockerfiles, y contenedorización de aplicaciones web."
 mode: subagent
+model: opencode/deepseek-v4-flash-free
 color: "#2496ED"
 permission:
   read: allow

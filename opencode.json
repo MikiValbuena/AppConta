@@ -4,6 +4,7 @@
     "gestor": {
       "description": "Orquestador principal. Analiza tareas, decide si necesita especialistas (Windows/Docker), delega al programador, y coordina el flujo de revisiones.",
       "mode": "primary",
+      "model": "opencode/big-pickle",
       "color": "#FF6B35",
       "permission": {
         "read": "allow",
@@ -31,6 +32,7 @@
     "especialista-windows": {
       "description": "Experto en Windows 10/11, WSL 2, PowerShell, y configuración del sistema para entornos Docker.",
       "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
       "color": "#0078D4",
       "permission": {
         "read": "allow",
@@ -54,6 +56,7 @@
     "especialista-docker": {
       "description": "Experto en Docker, Docker Compose, Dockerfiles, y contenedorización de aplicaciones web.",
       "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
       "color": "#2496ED",
       "permission": {
         "read": "allow",
@@ -75,6 +78,7 @@
     "programador": {
       "description": "Implementa el código siguiendo las recomendaciones de los especialistas y el diseño del proyecto.",
       "mode": "subagent",
+      "model": "opencode/deepseek-v4-flash-free",
       "color": "#4CAF50",
       "permission": {
         "read": "allow",
@@ -97,6 +101,7 @@
     "revisor": {
       "description": "Revisor de código. Analiza el código implementado, detecta issues, bugs, y problemas de calidad. No modifica nada, solo reporta.",
       "mode": "subagent",
+      "model": "opencode/big-pickle",
       "color": "#E53935",
       "permission": {
         "read": "allow",

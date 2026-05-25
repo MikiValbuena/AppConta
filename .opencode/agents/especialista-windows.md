@@ -1,6 +1,7 @@
 ---
 description: "Experto en Windows 10/11, WSL 2, PowerShell, y configuración del sistema para entornos Docker."
 mode: subagent
+model: opencode/deepseek-v4-flash-free
 color: "#0078D4"
 permission:
   read: allow

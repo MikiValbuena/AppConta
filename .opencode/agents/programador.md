@@ -1,6 +1,7 @@
 ---
 description: "Implementa el código siguiendo las recomendaciones de los especialistas y el diseño del proyecto."
 mode: subagent
+model: opencode/deepseek-v4-flash-free
 color: "#4CAF50"
 permission:
   read: allow

@@ -1,6 +1,7 @@
 ---
 description: "Orquestador principal del proyecto. Analiza tareas, decide si necesita especialistas (Windows/Docker), delega al programador, y coordina el flujo de revision."
 mode: primary
+model: opencode/big-pickle
 color: "#FF6B35"
 permission:
   read: allow
