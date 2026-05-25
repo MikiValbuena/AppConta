@@ -98,18 +98,32 @@ class PanelBalance(ttk.Frame):
         """Calcula ingresos, gastos y balance por mes."""
         meses = defaultdict(lambda: {"ingresos": 0, "gastos": 0})
 
-        for m in self.datos.movimientos:
+        movs = self.datos.get_movimientos()
+        for m in movs:
             if cuenta and cuenta != "Todas" and m["cuenta"] != cuenta:
                 continue
-            if not isinstance(m["fecha"], datetime):
+
+            fecha = m["fecha"]
+            # La fecha viene como string 'YYYY-MM-DD' desde SQLite
+            if isinstance(fecha, str):
+                try:
+                    partes = fecha.split("-")
+                    anno = int(partes[0])
+                    mes_num = int(partes[1])
+                except (ValueError, IndexError):
+                    continue
+            elif isinstance(fecha, datetime):
+                anno = fecha.year
+                mes_num = fecha.month
+            else:
                 continue
 
-            mes = f"{m['fecha'].year}-{m['fecha'].month:02d}"
+            mes_key = f"{anno}-{mes_num:02d}"
 
             if m["tipo"] == "ingreso":
-                meses[mes]["ingresos"] += m["importe"]
+                meses[mes_key]["ingresos"] += m["importe"]
             else:
-                meses[mes]["gastos"] += m["importe"]
+                meses[mes_key]["gastos"] += m["importe"]
 
         # Ordenar por mes
         return dict(sorted(meses.items()))
