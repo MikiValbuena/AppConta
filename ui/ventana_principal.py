@@ -5,10 +5,7 @@ Interfaz con ttkbootstrap mostrando datos del ano 2025.
 
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
-from ttkbootstrap.tableview import Tableview
-from ttkbootstrap.toast import ToastNotification
 import tkinter as tk
-from tkinter import ttk as ttk_widgets
 from datetime import datetime
 
 from ui.data_loader import DataLoader

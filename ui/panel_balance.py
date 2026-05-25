@@ -5,6 +5,7 @@ Panel de balance mensual - Tabla y grafico de evolucion mensual.
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 from collections import defaultdict
+from datetime import datetime
 import matplotlib
 matplotlib.use("TkAgg")
 

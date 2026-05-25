@@ -4,9 +4,7 @@ Panel de movimientos - Lista de transacciones con filtros.
 
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
-from ttkbootstrap.tableview import Tableview
 from datetime import datetime
-from tkinter import ttk as ttk_widgets
 
 
 class PanelMovimientos(ttk.Frame):
